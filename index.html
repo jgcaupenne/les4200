@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les 4200 — Manifeste pour une Démocratie par Tirage au Sort</title>
+<style>
+:root{
+  --bg:#0A1628;--bg-alt:#0E1D38;--bg-card:rgba(255,255,255,0.035);
+  --gold:#C9A84C;--gold-dim:rgba(201,168,76,0.12);--gold-glow:rgba(201,168,76,0.06);
+  --fg:#F0EDE6;--text:#98AABF;--muted:#4E6070;
+  --border:rgba(201,168,76,0.18);--border-sub:rgba(255,255,255,0.06);
+  --danger-bg:#0C0508;--danger-red:#D04040;
+  --ff-display:Georgia,'Times New Roman',serif;
+  --ff-body:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --max-w:1080px;--vpad:clamp(4.5rem,10vw,7.5rem);
+}
+@media(prefers-color-scheme:light){:root{--bg:#F3EFE5;--bg-alt:#EAE4D6;--bg-card:rgba(0,0,0,0.04);--gold:#7A5A15;--gold-dim:rgba(122,90,21,0.1);--gold-glow:rgba(122,90,21,0.05);--fg:#12213A;--text:#3A4D60;--muted:#8090A0;--border:rgba(122,90,21,0.22);--border-sub:rgba(0,0,0,0.08);--danger-bg:#1E0810;--danger-red:#C03030;}}
+:root[data-theme="dark"]{--bg:#0A1628;--bg-alt:#0E1D38;--bg-card:rgba(255,255,255,0.035);--gold:#C9A84C;--gold-dim:rgba(201,168,76,0.12);--gold-glow:rgba(201,168,76,0.06);--fg:#F0EDE6;--text:#98AABF;--muted:#4E6070;--border:rgba(201,168,76,0.18);--border-sub:rgba(255,255,255,0.06);--danger-bg:#0C0508;--danger-red:#D04040}
+:root[data-theme="light"]{--bg:#F3EFE5;--bg-alt:#EAE4D6;--bg-card:rgba(0,0,0,0.04);--gold:#7A5A15;--gold-dim:rgba(122,90,21,0.1);--gold-glow:rgba(122,90,21,0.05);--fg:#12213A;--text:#3A4D60;--muted:#8090A0;--border:rgba(122,90,21,0.22);--border-sub:rgba(0,0,0,0.08);--danger-bg:#1E0810;--danger-red:#C03030}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);line-height:1.75;overflow-x:hidden}
+a{color:var(--gold);text-underline-offset:3px}
+button{cursor:pointer;font-family:var(--ff-body);border:none;background:none}
+h1,h2,h3{font-family:var(--ff-display);color:var(--fg);text-wrap:balance;line-height:1.15}
+.eyebrow{display:inline-block;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.9rem}
+.section-h{font-size:clamp(1.75rem,4vw,2.75rem);margin-bottom:.75rem}
+.section-lead{font-size:1.05rem;max-width:58ch;margin-bottom:2.75rem;line-height:1.8}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.section{padding:var(--vpad) 1.5rem;max-width:var(--max-w);margin:0 auto}
+.bleed{padding:var(--vpad) 0}.bleed--alt{background:var(--bg-alt)}.bleed--danger{background:var(--danger-bg)}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 1.5rem}
+/* LANG BAR */
+.lang-bar{position:fixed;top:0;right:0;z-index:200;display:flex;gap:0;background:rgba(10,22,40,.88);backdrop-filter:blur(10px);border-bottom-left-radius:4px;border-bottom:1px solid rgba(201,168,76,.15);border-left:1px solid rgba(201,168,76,.15)}
+.lang-btn{padding:.45rem .7rem;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .2s,background .2s;border-right:1px solid rgba(201,168,76,.1)}
+.lang-btn:last-child{border-right:none}
+.lang-btn:hover{color:var(--gold);background:rgba(201,168,76,.06)}
+.lang-btn.active{color:var(--gold);font-weight:700}
+@media(prefers-color-scheme:light){.lang-bar{background:rgba(243,239,229,.92)}}
+/* HERO */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:8rem 1.5rem 5rem;overflow:hidden;background:radial-gradient(ellipse 70% 55% at 50% 38%,rgba(201,168,76,.1) 0%,transparent 70%),var(--bg)}
+.hero__ghost{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;user-select:none;overflow:hidden}
+.hero__ghost span{font-family:var(--ff-display);font-size:clamp(10rem,28vw,26rem);font-weight:bold;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.09);letter-spacing:-.02em;line-height:1;white-space:nowrap;transform:translateY(.05em)}
+.hero__content{position:relative;z-index:1;max-width:760px}
+.hero__badge{display:inline-flex;align-items:center;gap:.6rem;padding:.35rem 1rem;border:1px solid var(--border);margin-bottom:2rem;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.hero__title{font-size:clamp(3.8rem,15vw,12rem);color:var(--fg);letter-spacing:-.03em;line-height:.95;margin-bottom:.6rem}
+.hero__sub{font-family:var(--ff-display);font-style:italic;font-size:clamp(.95rem,2.2vw,1.25rem);color:var(--text);max-width:46ch;margin:0 auto 2.5rem;line-height:1.6}
+.btn{display:inline-block;padding:.8rem 2rem;border:1.5px solid var(--gold);color:var(--gold);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:background .22s,color .22s}
+.btn:hover,.btn:focus-visible{background:var(--gold);color:var(--bg);outline:none}
+.btn--solid{background:var(--gold);color:var(--bg)}.btn--solid:hover,.btn--solid:focus-visible{background:transparent;color:var(--gold)}
+.hero__scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem}
+.hero__scroll-bar{width:1px;height:2.75rem;background:linear-gradient(to bottom,var(--gold),transparent);animation:sbar 2s ease-in-out infinite}
+@keyframes sbar{0%,100%{opacity:.3;transform:scaleY(.5);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+/* STATS */
+.stats__grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{padding:2.25rem 1.5rem;text-align:center;border-right:1px solid var(--border-sub)}.stat:last-child{border-right:none}
+.stat__n{font-family:var(--ff-display);font-size:clamp(2rem,5vw,3.75rem);color:var(--gold);line-height:1;font-variant-numeric:tabular-nums;margin-bottom:.4rem}
+.stat__l{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text);line-height:1.45}
+@media(max-width:680px){.stats__grid{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:none}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--border-sub)}}
+/* STEPS */
+.steps{margin-top:2.5rem;position:relative}
+.steps::before{content:'';position:absolute;left:2.25rem;top:3.5rem;bottom:3.5rem;width:1px;background:linear-gradient(to bottom,var(--gold),transparent 90%);opacity:.25}
+.step{display:grid;grid-template-columns:4.5rem 1fr;gap:2rem;padding:2rem 0;border-bottom:1px solid var(--border-sub)}.step:last-child{border-bottom:none}
+.step__num{width:4.5rem;height:4.5rem;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:1.75rem;color:var(--gold);background:var(--bg-alt);flex-shrink:0;position:relative;z-index:1}
+.step h3{font-size:1.15rem;color:var(--fg);margin-bottom:.6rem}.step p{font-size:.975rem;line-height:1.8}
+@media(max-width:560px){.steps::before{left:1.75rem}.step{grid-template-columns:3.5rem 1fr;gap:1.25rem}.step__num{width:3.5rem;height:3.5rem;font-size:1.35rem}}
+/* ARCH */
+.arch{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border);margin:2.5rem 0 2rem;overflow:hidden}
+.arch__block{padding:2rem 1.75rem;border-right:1px solid var(--border)}.arch__block:last-child{border-right:none}
+.arch__tag{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.75rem}
+.arch__block h3{font-size:1.05rem;color:var(--fg);margin-bottom:.5rem}.arch__block p{font-size:.88rem;line-height:1.65}
+.arch__block--new{background:var(--gold-dim)}.arch__block--new .arch__tag{color:var(--gold)}.arch__block--new h3{color:var(--gold)}
+.arch__pill{display:inline-block;margin-top:1rem;padding:.25rem .75rem;border:1px solid var(--gold);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.arch__caption{font-family:var(--ff-display);font-style:italic;font-size:1rem;color:var(--text);text-align:center;max-width:62ch;margin:0 auto;line-height:1.75}
+@media(max-width:680px){.arch{grid-template-columns:1fr}.arch__block{border-right:none;border-bottom:1px solid var(--border)}.arch__block:last-child{border-bottom:none}}
+/* ADV */
+.adv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-sub);border:1px solid var(--border-sub);margin-top:2.5rem}
+.adv{background:var(--bg-alt);padding:1.75rem 1.5rem;transition:background .22s}.adv:hover{background:color-mix(in srgb,var(--bg-alt) 70%,var(--gold) 30%)}
+.adv__num{font-family:var(--ff-display);font-size:2rem;color:var(--gold);opacity:.3;line-height:1;margin-bottom:.75rem}
+.adv h3{font-size:.975rem;color:var(--fg);margin-bottom:.45rem}.adv p{font-size:.88rem;line-height:1.7}
+@media(max-width:800px){.adv-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:480px){.adv-grid{grid-template-columns:1fr}}
+/* ACCORDION */
+.accordion{margin-top:2.5rem;border:1px solid var(--border)}
+.acc-item{border-bottom:1px solid var(--border)}.acc-item:last-child{border-bottom:none}
+.acc-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.25rem 1.5rem;color:var(--fg);font-family:var(--ff-display);font-size:.975rem;text-align:left;background:transparent;transition:background .2s}
+.acc-btn:hover{background:var(--gold-glow)}.acc-btn:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.acc-icon{flex-shrink:0;width:1.35rem;height:1.35rem;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:.9rem;line-height:1;transition:transform .3s}
+.acc-item.open .acc-icon{transform:rotate(45deg)}
+.acc-body{overflow:hidden;max-height:0;transition:max-height .38s ease,padding .28s;padding:0 1.5rem}
+.acc-item.open .acc-body{max-height:300px;padding:0 1.5rem 1.5rem}.acc-body p{font-size:.93rem;line-height:1.82}
+/* CORRUPTION */
+.corr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2.5rem}
+.corr-item{border-top:1px solid rgba(200,50,50,.3);padding-top:1.5rem}
+.corr-item h3{font-size:1rem;color:rgba(240,210,210,.85);margin-bottom:.6rem;font-family:var(--ff-display)}
+.corr-item p{font-size:.88rem;color:rgba(200,185,185,.55);line-height:1.72}
+.corr-num{font-family:var(--ff-display);font-size:2.25rem;color:var(--danger-red);display:block;margin-bottom:.5rem;line-height:1}
+.bleed--danger .eyebrow{color:rgba(210,100,100,.8)}.bleed--danger .section-h{color:rgba(240,215,215,.9)}
+@media(max-width:680px){.corr-grid{grid-template-columns:1fr;gap:1.5rem}}
+/* CTA */
+.cta-wrap{text-align:center;background:radial-gradient(ellipse 55% 45% at 50% 65%,rgba(201,168,76,.09) 0%,transparent 70%),var(--bg)}
+.cta-inner{max-width:680px;margin:0 auto;padding:0 1.5rem}
+.cta-quote{font-family:var(--ff-display);font-style:italic;font-size:clamp(1rem,2.5vw,1.3rem);color:var(--text);line-height:1.9;border-left:2px solid var(--gold);padding-left:1.75rem;text-align:left;margin-bottom:3.5rem}
+.cta-lines{display:flex;flex-direction:column;gap:.15rem;margin-bottom:3rem}
+.cta-lines strong{font-family:var(--ff-display);font-size:clamp(1.35rem,3.5vw,2.2rem);color:var(--gold);display:block}
+.cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.75rem}
+.cta-foot{font-size:.82rem;color:var(--muted);font-style:italic}
+/* FOOTER */
+footer{background:color-mix(in srgb,var(--bg) 60%,#000 40%);padding:3rem 1.5rem;text-align:center;border-top:1px solid var(--border)}
+.footer-logo{font-family:var(--ff-display);font-size:1.35rem;color:var(--gold);letter-spacing:.2em;display:block;margin-bottom:.4rem}
+.footer-sub{font-size:.78rem;color:var(--muted);letter-spacing:.04em;line-height:1.8}
+</style>
+</head>
+<body>
+
+<nav class="lang-bar" aria-label="Language">
+  <button class="lang-btn active" data-lang="fr">FR</button>
+  <button class="lang-btn" data-lang="en">EN</button>
+  <button class="lang-btn" data-lang="es">ES</button>
+  <button class="lang-btn" data-lang="de">DE</button>
+  <button class="lang-btn" data-lang="zh">中文</button>
+  <button class="lang-btn" data-lang="ru">RU</button>
+</nav>
+
+<header class="hero">
+  <div class="hero__ghost" aria-hidden="true"><span>4200</span></div>
+  <div class="hero__content">
+    <div class="hero__badge" data-i18n="hero_badge">Manifeste pour une démocratie par tirage au sort intelligent</div>
+    <h1 class="hero__title">Les&nbsp;4&nbsp;200</h1>
+    <p class="hero__sub" data-i18n="hero_sub">Un Sénat citoyen tiré au sort pour refonder la démocratie française</p>
+    <a href="#urgence" class="btn" data-i18n="hero_btn">Lire le manifeste ↓</a>
+  </div>
+  <div class="hero__scroll" aria-hidden="true"><div class="hero__scroll-bar"></div></div>
+</header>
+
+<section class="section" id="urgence">
+  <p class="eyebrow reveal" data-i18n="urgency_eyebrow">L'urgence</p>
+  <h2 class="section-h reveal" data-i18n="urgency_h2">Notre démocratie est en crise.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:1rem" class="reveal" id="preamble-grid">
+    <p data-i18n="urgency_p1">Notre époque fait face à des défis sans précédent : dérèglement climatique, bouleversements induits par l'intelligence artificielle, creusement des inégalités. Ces crises exigent un pouvoir politique fort et légitime, capable de prendre des décisions courageuses pour le bien commun.</p>
+    <p data-i18n="urgency_p2">Notre démocratie représentative actuelle est paralysée. Minée par la défiance citoyenne, l'abstention massive et le fossé grandissant entre gouvernants et gouvernés, elle ne peut plus répondre aux enjeux de notre temps.</p>
+  </div>
+  <blockquote style="margin-top:2.5rem;padding:1.75rem 2rem;border:1px solid var(--border);background:var(--gold-dim);font-family:var(--ff-display);font-style:italic;font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--fg);text-align:center;line-height:1.6" class="reveal" data-i18n="urgency_quote">
+    Il est temps de refonder notre démocratie sur des bases nouvelles.
+  </blockquote>
+</section>
+
+<div class="reveal">
+  <div class="stats__grid container">
+    <div class="stat"><div class="stat__n" data-target="4200">0</div><div class="stat__l" data-i18n="stat_l1">citoyens tirés<br>au sort chaque année</div></div>
+    <div class="stat"><div class="stat__n" data-target="420">0</div><div class="stat__l" data-i18n="stat_l2">sénateurs<br>citoyens</div></div>
+    <div class="stat"><div class="stat__n" data-i18n="stat_n3">1 an</div><div class="stat__l" data-i18n="stat_l3">durée du mandat,<br>non renouvelable</div></div>
+    <div class="stat"><div class="stat__n">0</div><div class="stat__l" data-i18n="stat_l4">carrière politique<br>à défendre</div></div>
+  </div>
+</div>
+
+<div class="bleed bleed--alt" id="mecanisme">
+  <div class="container">
+    <p class="eyebrow reveal" data-i18n="mech_eyebrow">Le mécanisme</p>
+    <h2 class="section-h reveal" data-i18n="mech_h2">Comment ça fonctionne</h2>
+    <p class="section-lead reveal" data-i18n="mech_lead">Un processus en trois étapes, simple, reproductible, fondé sur la sagesse collective.</p>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__num" aria-hidden="true">1</div>
+        <div><h3 data-i18n="step1_h3">Le tirage au sort initial</h3><p data-i18n="step1_p">Chaque année, 4&nbsp;200 citoyens français sont tirés au sort selon les mêmes critères que les jurés d'assises — majeurs, inscrits sur les listes électorales. Représentativité sociologique authentique : tous les âges, toutes les professions, toutes les origines, tous les territoires.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="step__num" aria-hidden="true">2</div>
+        <div><h3 data-i18n="step2_h3">La sélection par les pairs</h3><p data-i18n="step2_p">Ces 4&nbsp;200 citoyens sont réunis par groupes de 10 pour une journée de délibération. À l'issue, chaque participant évalue les neuf autres sur une seule question : <em>« Quelle est la personne la plus compétente pour créer une loi ? »</em> La personne ayant obtenu la note la plus élevée est sélectionnée.</p></div>
+      </div>
+      <div class="step reveal">
+        <div class="step__num" aria-hidden="true">3</div>
+        <div><h3 data-i18n="step3_h3">Le Sénat citoyen</h3><p data-i18n="step3_p">Les 420 citoyens ainsi désignés forment le nouveau Sénat pour un an, non renouvelable. Ils bénéficient de l'appui des services administratifs du Sénat et étudient les propositions de loi avec l'aide d'experts indépendants.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="architecture">
+  <p class="eyebrow reveal" data-i18n="arch_eyebrow">L'architecture institutionnelle</p>
+  <h2 class="section-h reveal" data-i18n="arch_h2">Ce qui change. Ce qui reste.</h2>
+  <div class="arch reveal">
+    <div class="arch__block"><p class="arch__tag" data-i18n="arch1_tag">Conservé</p><h3 data-i18n="arch1_h3">L'Exécutif</h3><p data-i18n="arch1_p">Président et Gouvernement élus au suffrage universel. Ils appliquent et exécutent les lois votées.</p></div>
+    <div class="arch__block"><p class="arch__tag" data-i18n="arch2_tag">Conservé</p><h3 data-i18n="arch2_h3">L'Assemblée nationale</h3><p data-i18n="arch2_p">Élue au suffrage universel. Elle propose, délibère et adopte les textes de loi en première lecture.</p></div>
+    <div class="arch__block arch__block--new"><p class="arch__tag" data-i18n="arch3_tag">Nouveau</p><h3 data-i18n="arch3_h3">Le Sénat citoyen</h3><p data-i18n="arch3_p">420 citoyens tirés au sort examinent et votent définitivement les lois.</p><span class="arch__pill" data-i18n="arch3_pill">Dernier mot</span></div>
+  </div>
+  <p class="arch__caption reveal" data-i18n="arch_caption">Cette inversion du pouvoir législatif est fondamentale : elle place le contrôle démocratique final entre les mains de citoyens ordinaires, libres de toute ambition de carrière politique.</p>
+</section>
+
+<div class="bleed bleed--alt" id="avantages">
+  <div class="container">
+    <p class="eyebrow reveal" data-i18n="adv_eyebrow">Les bénéfices</p>
+    <h2 class="section-h reveal" data-i18n="adv_h2">Pourquoi ce système change tout</h2>
+    <div class="adv-grid">
+      <div class="adv reveal"><div class="adv__num">I</div><h3 data-i18n="adv1_h3">La légitimité retrouvée</h3><p data-i18n="adv1_p">Des personnes ordinaires issues de tous les milieux, pas une caste politique déconnectée. Une légitimité sociologique inédite.</p></div>
+      <div class="adv reveal"><div class="adv__num">II</div><h3 data-i18n="adv2_h3">Le bien commun comme seul horizon</h3><p data-i18n="adv2_p">Aucune réélection à préparer, aucun parti à satisfaire. Leur seule motivation : les meilleures décisions possibles pour le pays.</p></div>
+      <div class="adv reveal"><div class="adv__num">III</div><h3 data-i18n="adv3_h3">Une représentativité authentique</h3><p data-i18n="adv3_p">Jeunes et seniors, ouvriers et cadres, ruraux et urbains. Le Sénat citoyen ressemble enfin au peuple qu'il représente.</p></div>
+      <div class="adv reveal"><div class="adv__num">IV</div><h3 data-i18n="adv4_h3">La fin des blocages partisans</h3><p data-i18n="adv4_p">Plus de gauche contre droite — une délibération collective centrée sur le fond des problèmes.</p></div>
+      <div class="adv reveal"><div class="adv__num">V</div><h3 data-i18n="adv5_h3">L'acceptabilité des décisions</h3><p data-i18n="adv5_p">Des lois votées par des citoyens ordinaires, mieux comprises, mieux acceptées, mieux appliquées.</p></div>
+      <div class="adv reveal"><div class="adv__num">VI</div><h3 data-i18n="adv6_h3">Simple et économique</h3><p data-i18n="adv6_p">Plus rapide et moins coûteux que des campagnes électorales. Le tirage au sort élimine l'influence de l'argent.</p></div>
+    </div>
+  </div>
+</div>
+
+<section class="section" id="objections">
+  <p class="eyebrow reveal" data-i18n="obj_eyebrow">Débat</p>
+  <h2 class="section-h reveal" data-i18n="obj_h2">Réponses aux objections</h2>
+  <div class="accordion reveal">
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false"><span data-i18n="obj1_q">« Les citoyens ordinaires manquent de compétences »</span><span class="acc-icon" aria-hidden="true">+</span></button>
+      <div class="acc-body"><p data-i18n="obj1_a">La sélection par les pairs identifie les personnes les plus aptes à la délibération. Les sénateurs citoyens bénéficient de l'accompagnement d'experts indépendants et de l'administration sénatoriale — exactement comme les élus actuels. L'histoire montre que les citoyens ordinaires, quand on leur fait confiance, sont capables de délibérations de haute qualité.</p></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false"><span data-i18n="obj2_q">« Ils seront manipulés par les experts »</span><span class="acc-icon" aria-hidden="true">+</span></button>
+      <div class="acc-body"><p data-i18n="obj2_a">420 citoyens issus de tous les milieux, avec des expériences de vie variées : cette diversité est la meilleure protection contre la manipulation. Toutes les auditions sont publiques et contradictoires.</p></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false"><span data-i18n="obj3_q">« Ils ne seront pas responsables devant les électeurs »</span><span class="acc-icon" aria-hidden="true">+</span></button>
+      <div class="acc-body"><p data-i18n="obj3_a">Au contraire : ils vivront directement sous les lois qu'ils ont votées. Un élu peut espérer échapper aux conséquences de ses votes ; un citoyen-législateur, jamais. La rotation annuelle empêche toute constitution d'un réseau d'influence.</p></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false"><span data-i18n="obj4_q">« On ne peut pas forcer quelqu'un à accepter cette charge »</span><span class="acc-icon" aria-hidden="true">+</span></button>
+      <div class="acc-body"><p data-i18n="obj4_a">Le système repose sur le volontariat, comme pour les jurés d'assises. L'expérience montre que la majorité des citoyens sollicités acceptent quand on leur explique l'importance de leur mission.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="bleed bleed--danger" id="garanties">
+  <div class="container">
+    <p class="eyebrow reveal" style="color:rgba(210,100,100,.8)" data-i18n="corr_eyebrow">Les garanties</p>
+    <h2 class="section-h reveal" style="color:rgba(240,215,215,.9)" data-i18n="corr_h2">Tolérance zéro pour la corruption</h2>
+    <div class="corr-grid">
+      <div class="corr-item reveal"><span class="corr-num">§</span><h3 data-i18n="corr1_h3">Interdiction absolue</h3><p data-i18n="corr1_p">Toute forme de pression, de corruption ou de tentative d'influence illégitime sur les sénateurs citoyens est strictement interdite.</p></div>
+      <div class="corr-item reveal"><span class="corr-num">3 ans</span><h3 data-i18n="corr2_h3">Prison ferme minimum</h3><p data-i18n="corr2_p">Toute personne convaincue de corruption sur un sénateur citoyen encourt une peine de prison ferme d'au moins trois ans, sans dérogation.</p></div>
+      <div class="corr-item reveal"><span class="corr-num">⊡</span><h3 data-i18n="corr3_h3">Transparence totale</h3><p data-i18n="corr3_p">Tous les lobbies s'expriment en séance plénière, publique et contradictoire. Aucune influence privée, aucune porte dérobée.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="bleed cta-wrap" id="rejoindre" style="padding:var(--vpad) 0">
+  <div class="cta-inner">
+    <blockquote class="cta-quote reveal" data-i18n="cta_quote">« La démocratie signifie le pouvoir au peuple.<br>Notre système actuel confie ce pouvoir à une élite politique professionnelle.<br>Le tirage au sort intelligent remet littéralement le pouvoir entre les mains du peuple. »</blockquote>
+    <div class="cta-lines reveal">
+      <strong data-i18n="cta_l1">Le changement est possible.</strong>
+      <strong data-i18n="cta_l2">Le changement est nécessaire.</strong>
+      <strong data-i18n="cta_l3">Le changement commence maintenant.</strong>
+    </div>
+    <div class="cta-buttons reveal">
+      <a href="#" class="btn btn--solid" data-i18n="cta_btn1">Rejoindre le mouvement</a>
+      <a href="#" class="btn" data-i18n="cta_btn2">Partager le manifeste</a>
+    </div>
+    <p class="cta-foot reveal" data-i18n="cta_foot">Athènes l'a pratiqué pendant deux siècles. Nous pouvons le faire aujourd'hui.</p>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">LES 4200</span>
+  <span class="footer-sub" data-i18n="footer_sub">les4200.fr &nbsp;·&nbsp; Mouvement pour une démocratie citoyenne &nbsp;·&nbsp; France</span>
+</footer>
+
+<script>
+var T = {
+  fr: {
+    hero_badge:"Manifeste pour une démocratie par tirage au sort intelligent",
+    hero_sub:"Un Sénat citoyen tiré au sort pour refonder la démocratie française",
+    hero_btn:"Lire le manifeste ↓",
+    urgency_eyebrow:"L'urgence",
+    urgency_h2:"Notre démocratie est en crise.",
+    urgency_p1:"Notre époque fait face à des défis sans précédent : dérèglement climatique, bouleversements induits par l'intelligence artificielle, creusement des inégalités. Ces crises exigent un pouvoir politique fort et légitime, capable de prendre des décisions courageuses pour le bien commun.",
+    urgency_p2:"Notre démocratie représentative actuelle est paralysée. Minée par la défiance citoyenne, l'abstention massive et le fossé grandissant entre gouvernants et gouvernés, elle ne peut plus répondre aux enjeux de notre temps.",
+    urgency_quote:"Il est temps de refonder notre démocratie sur des bases nouvelles.",
+    stat_l1:"citoyens tirés<br>au sort chaque année",stat_l2:"sénateurs<br>citoyens",stat_n3:"1 an",stat_l3:"durée du mandat,<br>non renouvelable",stat_l4:"carrière politique<br>à défendre",
+    mech_eyebrow:"Le mécanisme",mech_h2:"Comment ça fonctionne",mech_lead:"Un processus en trois étapes, simple, reproductible, fondé sur la sagesse collective.",
+    step1_h3:"Le tirage au sort initial",step1_p:"Chaque année, 4&nbsp;200 citoyens français sont tirés au sort selon les mêmes critères que les jurés d'assises — majeurs, inscrits sur les listes électorales. Représentativité sociologique authentique : tous les âges, toutes les professions, toutes les origines, tous les territoires.",
+    step2_h3:"La sélection par les pairs",step2_p:"Ces 4&nbsp;200 citoyens sont réunis par groupes de 10 pour une journée de délibération. À l'issue, chaque participant évalue les neuf autres sur une seule question : <em>« Quelle est la personne la plus compétente pour créer une loi ? »</em> La personne ayant obtenu la note la plus élevée est sélectionnée.",
+    step3_h3:"Le Sénat citoyen",step3_p:"Les 420 citoyens ainsi désignés forment le nouveau Sénat pour un an, non renouvelable. Ils bénéficient de l'appui des services administratifs du Sénat et étudient les propositions de loi avec l'aide d'experts indépendants.",
+    arch_eyebrow:"L'architecture institutionnelle",arch_h2:"Ce qui change. Ce qui reste.",
+    arch1_tag:"Conservé",arch1_h3:"L'Exécutif",arch1_p:"Président et Gouvernement élus au suffrage universel. Ils appliquent et exécutent les lois votées.",
+    arch2_tag:"Conservé",arch2_h3:"L'Assemblée nationale",arch2_p:"Élue au suffrage universel. Elle propose, délibère et adopte les textes de loi en première lecture.",
+    arch3_tag:"Nouveau",arch3_h3:"Le Sénat citoyen",arch3_p:"420 citoyens tirés au sort examinent et votent définitivement les lois.",arch3_pill:"Dernier mot",
+    arch_caption:"Cette inversion du pouvoir législatif est fondamentale : elle place le contrôle démocratique final entre les mains de citoyens ordinaires, libres de toute ambition de carrière politique.",
+    adv_eyebrow:"Les bénéfices",adv_h2:"Pourquoi ce système change tout",
+    adv1_h3:"La légitimité retrouvée",adv1_p:"Des personnes ordinaires issues de tous les milieux, pas une caste politique déconnectée. Une légitimité sociologique inédite.",
+    adv2_h3:"Le bien commun comme seul horizon",adv2_p:"Aucune réélection à préparer, aucun parti à satisfaire. Leur seule motivation : les meilleures décisions possibles pour le pays.",
+    adv3_h3:"Une représentativité authentique",adv3_p:"Jeunes et seniors, ouvriers et cadres, ruraux et urbains. Le Sénat citoyen ressemble enfin au peuple qu'il représente.",
+    adv4_h3:"La fin des blocages partisans",adv4_p:"Plus de gauche contre droite — une délibération collective centrée sur le fond des problèmes.",
+    adv5_h3:"L'acceptabilité des décisions",adv5_p:"Des lois votées par des citoyens ordinaires, mieux comprises, mieux acceptées, mieux appliquées.",
+    adv6_h3:"Simple et économique",adv6_p:"Plus rapide et moins coûteux que des campagnes électorales. Le tirage au sort élimine l'influence de l'argent.",
+    obj_eyebrow:"Débat",obj_h2:"Réponses aux objections",
+    obj1_q:"« Les citoyens ordinaires manquent de compétences »",obj1_a:"La sélection par les pairs identifie les personnes les plus aptes à la délibération. Les sénateurs citoyens bénéficient de l'accompagnement d'experts indépendants et de l'administration sénatoriale — exactement comme les élus actuels. L'histoire montre que les citoyens ordinaires, quand on leur fait confiance, sont capables de délibérations de haute qualité.",
+    obj2_q:"« Ils seront manipulés par les experts »",obj2_a:"420 citoyens issus de tous les milieux, avec des expériences de vie variées : cette diversité est la meilleure protection contre la manipulation. Toutes les auditions sont publiques et contradictoires.",
+    obj3_q:"« Ils ne seront pas responsables devant les électeurs »",obj3_a:"Au contraire : ils vivront directement sous les lois qu'ils ont votées. Un élu peut espérer échapper aux conséquences de ses votes ; un citoyen-législateur, jamais. La rotation annuelle empêche toute constitution d'un réseau d'influence.",
+    obj4_q:"« On ne peut pas forcer quelqu'un à accepter cette charge »",obj4_a:"Le système repose sur le volontariat, comme pour les jurés d'assises. L'expérience montre que la majorité des citoyens sollicités acceptent quand on leur explique l'importance de leur mission.",
+    corr_eyebrow:"Les garanties",corr_h2:"Tolérance zéro pour la corruption",
+    corr1_h3:"Interdiction absolue",corr1_p:"Toute forme de pression, de corruption ou de tentative d'influence illégitime sur les sénateurs citoyens est strictement interdite.",
+    corr2_h3:"Prison ferme minimum",corr2_p:"Toute personne convaincue de corruption sur un sénateur citoyen encourt une peine de prison ferme d'au moins trois ans, sans dérogation.",
+    corr3_h3:"Transparence totale",corr3_p:"Tous les lobbies s'expriment en séance plénière, publique et contradictoire. Aucune influence privée, aucune porte dérobée.",
+    cta_quote:"« La démocratie signifie le pouvoir au peuple.<br>Notre système actuel confie ce pouvoir à une élite politique professionnelle.<br>Le tirage au sort intelligent remet littéralement le pouvoir entre les mains du peuple. »",
+    cta_l1:"Le changement est possible.",cta_l2:"Le changement est nécessaire.",cta_l3:"Le changement commence maintenant.",
+    cta_btn1:"Rejoindre le mouvement",cta_btn2:"Partager le manifeste",
+    cta_foot:"Athènes l'a pratiqué pendant deux siècles. Nous pouvons le faire aujourd'hui.",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; Mouvement pour une démocratie citoyenne &nbsp;·&nbsp; France"
+  },
+  en: {
+    hero_badge:"Manifesto for an Intelligent Sortition Democracy",
+    hero_sub:"A citizen Senate drawn by lot to rebuild French democracy",
+    hero_btn:"Read the manifesto ↓",
+    urgency_eyebrow:"The urgency",
+    urgency_h2:"Our democracy is in crisis.",
+    urgency_p1:"Our era faces unprecedented challenges: climate change, disruptions driven by artificial intelligence, growing inequality. These crises demand strong and legitimate political power, capable of making courageous decisions for the common good.",
+    urgency_p2:"Our current representative democracy is paralyzed. Undermined by citizens' distrust, massive abstention, and the growing gap between rulers and the governed, it can no longer meet the challenges of our time.",
+    urgency_quote:"It is time to rebuild our democracy on new foundations.",
+    stat_l1:"citizens drawn<br>by lot each year",stat_l2:"citizen<br>senators",stat_n3:"1 year",stat_l3:"term duration,<br>non-renewable",stat_l4:"political career<br>to defend",
+    mech_eyebrow:"The mechanism",mech_h2:"How it works",mech_lead:"A three-step process, simple, reproducible, grounded in collective wisdom.",
+    step1_h3:"The initial sortition",step1_p:"Each year, 4,200 French citizens are drawn by lot using the same criteria as jurors — adults, registered on electoral rolls. Authentic sociological representativeness: all ages, all professions, all origins, all territories.",
+    step2_h3:"Peer selection",step2_p:"These 4,200 citizens meet in groups of 10 for a day of deliberation. At the end, each participant evaluates the other nine on a single question: <em>\"Who is the most competent person to make a law?\"</em> The person with the highest score is selected.",
+    step3_h3:"The Citizens' Senate",step3_p:"The 420 citizens thus designated form the new Senate for one year, non-renewable. They benefit from the support of the Senate's administrative services and study proposed legislation with the help of independent experts.",
+    arch_eyebrow:"The institutional architecture",arch_h2:"What changes. What stays.",
+    arch1_tag:"Retained",arch1_h3:"The Executive",arch1_p:"President and Government elected by universal suffrage. They implement and enforce the laws passed.",
+    arch2_tag:"Retained",arch2_h3:"The National Assembly",arch2_p:"Elected by universal suffrage. It proposes, deliberates, and adopts legislation on first reading.",
+    arch3_tag:"New",arch3_h3:"The Citizens' Senate",arch3_p:"420 citizens drawn by lot examine and definitively vote on laws.",arch3_pill:"Final say",
+    arch_caption:"This reversal of legislative power is fundamental: it places final democratic control in the hands of ordinary citizens, free from any political career ambition.",
+    adv_eyebrow:"The benefits",adv_h2:"Why this system changes everything",
+    adv1_h3:"Legitimacy restored",adv1_p:"Ordinary people from all walks of life, not a disconnected political caste. An unprecedented sociological legitimacy.",
+    adv2_h3:"The common good as the only horizon",adv2_p:"No re-election to prepare for, no party to satisfy. Their only motivation: the best possible decisions for the country.",
+    adv3_h3:"Authentic representativeness",adv3_p:"Young and old, workers and executives, rural and urban. The Citizens' Senate finally resembles the people it represents.",
+    adv4_h3:"The end of partisan gridlock",adv4_p:"No more left versus right — collective deliberation focused on the substance of problems.",
+    adv5_h3:"Acceptability of decisions",adv5_p:"Laws voted by ordinary citizens, better understood, better accepted, better applied.",
+    adv6_h3:"Simple and cost-effective",adv6_p:"Faster and less costly than national election campaigns. The lottery eliminates the influence of money.",
+    obj_eyebrow:"Debate",obj_h2:"Answers to objections",
+    obj1_q:"\"Ordinary citizens lack the expertise\"",obj1_a:"Peer selection identifies the people most suited to deliberation. Citizen senators benefit from the support of independent experts and the Senate's administration — exactly like current elected officials. History shows that ordinary citizens, when trusted, are capable of high-quality deliberations.",
+    obj2_q:"\"They will be manipulated by experts\"",obj2_a:"420 citizens from all backgrounds, with varied life experiences: this diversity is the best protection against manipulation. All hearings are public and adversarial.",
+    obj3_q:"\"They won't be accountable to voters\"",obj3_a:"On the contrary: they will live directly under the laws they voted for. An elected official may hope to escape the consequences of their votes; a citizen-legislator never can. Annual rotation prevents the formation of influence networks.",
+    obj4_q:"\"You can't force someone to take on this role\"",obj4_a:"The system is based on voluntary participation, as with jury duty. Experience shows that the majority of citizens solicited accept when the importance of their mission is explained.",
+    corr_eyebrow:"The guarantees",corr_h2:"Zero tolerance for corruption",
+    corr1_h3:"Absolute prohibition",corr1_p:"Any form of pressure, corruption, or illegitimate influence on citizen senators is strictly prohibited.",
+    corr2_h3:"Minimum mandatory prison",corr2_p:"Anyone convicted of corrupting a citizen senator faces a minimum mandatory prison sentence of three years, without exception.",
+    corr3_h3:"Total transparency",corr3_p:"All lobbyists speak in full public plenary session, before the complete assembly. No private influence, no back door.",
+    cta_quote:"\"Democracy means power to the people.<br>Our current system entrusts that power to a professional political elite.<br>Intelligent sortition literally puts power back in the hands of the people.\"",
+    cta_l1:"Change is possible.",cta_l2:"Change is necessary.",cta_l3:"Change begins now.",
+    cta_btn1:"Join the movement",cta_btn2:"Share the manifesto",
+    cta_foot:"Athens practiced it for two centuries. We can do it today.",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; Movement for citizen democracy &nbsp;·&nbsp; France"
+  },
+  es: {
+    hero_badge:"Manifiesto por una Democracia de Sorteo Inteligente",
+    hero_sub:"Un Senado ciudadano elegido por sorteo para refundar la democracia francesa",
+    hero_btn:"Leer el manifiesto ↓",
+    urgency_eyebrow:"La urgencia",
+    urgency_h2:"Nuestra democracia está en crisis.",
+    urgency_p1:"Nuestra época se enfrenta a desafíos sin precedentes: cambio climático, trastornos provocados por la inteligencia artificial, aumento de las desigualdades. Estas crisis exigen un poder político fuerte y legítimo, capaz de tomar decisiones valientes por el bien común.",
+    urgency_p2:"Nuestra democracia representativa actual está paralizada. Minada por la desconfianza ciudadana, la abstención masiva y la creciente brecha entre gobernantes y gobernados, ya no puede responder a los desafíos de nuestro tiempo.",
+    urgency_quote:"Es hora de refundar nuestra democracia sobre nuevas bases.",
+    stat_l1:"ciudadanos elegidos<br>por sorteo cada año",stat_l2:"senadores<br>ciudadanos",stat_n3:"1 año",stat_l3:"duración del mandato,<br>no renovable",stat_l4:"carrera política<br>que defender",
+    mech_eyebrow:"El mecanismo",mech_h2:"Cómo funciona",mech_lead:"Un proceso de tres etapas, simple, reproducible, basado en la sabiduría colectiva.",
+    step1_h3:"El sorteo inicial",step1_p:"Cada año, 4.200 ciudadanos franceses son elegidos por sorteo según los mismos criterios que los jurados — adultos, inscritos en el censo electoral. Representatividad sociológica auténtica: todas las edades, todas las profesiones, todos los orígenes, todos los territorios.",
+    step2_h3:"La selección por pares",step2_p:"Estos 4.200 ciudadanos se reúnen en grupos de 10 para una jornada de deliberación. Al final, cada participante evalúa a los otros nueve con una sola pregunta: <em>«¿Quién es la persona más competente para crear una ley?»</em> La persona con la puntuación más alta es seleccionada.",
+    step3_h3:"El Senado ciudadano",step3_p:"Los 420 ciudadanos así designados forman el nuevo Senado durante un año, no renovable. Se benefician del apoyo de los servicios administrativos del Senado y estudian las propuestas de ley con la ayuda de expertos independientes.",
+    arch_eyebrow:"La arquitectura institucional",arch_h2:"Lo que cambia. Lo que permanece.",
+    arch1_tag:"Conservado",arch1_h3:"El Ejecutivo",arch1_p:"Presidente y Gobierno elegidos por sufragio universal. Aplican y ejecutan las leyes aprobadas.",
+    arch2_tag:"Conservado",arch2_h3:"La Asamblea Nacional",arch2_p:"Elegida por sufragio universal. Propone, delibera y adopta textos legislativos en primera lectura.",
+    arch3_tag:"Nuevo",arch3_h3:"El Senado ciudadano",arch3_p:"420 ciudadanos elegidos por sorteo examinan y votan definitivamente las leyes.",arch3_pill:"Última palabra",
+    arch_caption:"Esta inversión del poder legislativo es fundamental: coloca el control democrático final en manos de ciudadanos ordinarios, libres de cualquier ambición de carrera política.",
+    adv_eyebrow:"Los beneficios",adv_h2:"Por qué este sistema lo cambia todo",
+    adv1_h3:"La legitimidad recuperada",adv1_p:"Personas ordinarias de todos los ámbitos, no una casta política desconectada. Una legitimidad sociológica sin precedentes.",
+    adv2_h3:"El bien común como único horizonte",adv2_p:"Sin reelección que preparar, sin partido que satisfacer. Su única motivación: las mejores decisiones posibles para el país.",
+    adv3_h3:"Una representatividad auténtica",adv3_p:"Jóvenes y mayores, obreros y ejecutivos, rurales y urbanos. El Senado ciudadano se parece por fin al pueblo que representa.",
+    adv4_h3:"El fin de los bloqueos partidistas",adv4_p:"No más izquierda contra derecha — una deliberación colectiva centrada en el fondo de los problemas.",
+    adv5_h3:"La aceptabilidad de las decisiones",adv5_p:"Leyes votadas por ciudadanos ordinarios, mejor comprendidas, mejor aceptadas, mejor aplicadas.",
+    adv6_h3:"Simple y económico",adv6_p:"Más rápido y menos costoso que las campañas electorales. El sorteo elimina la influencia del dinero.",
+    obj_eyebrow:"Debate",obj_h2:"Respuestas a las objeciones",
+    obj1_q:"«Los ciudadanos ordinarios carecen de competencia»",obj1_a:"La selección por pares identifica a las personas más aptas para la deliberación. Los senadores ciudadanos se benefician del apoyo de expertos independientes y de la administración senatorial — exactamente como los electos actuales. La historia demuestra que los ciudadanos ordinarios, cuando se les confía, son capaces de deliberaciones de alta calidad.",
+    obj2_q:"«Serán manipulados por los expertos»",obj2_a:"420 ciudadanos de todos los ámbitos, con experiencias de vida variadas: esta diversidad es la mejor protección contra la manipulación. Todas las audiencias son públicas y contradictorias.",
+    obj3_q:"«No serán responsables ante los electores»",obj3_a:"Al contrario: vivirán directamente bajo las leyes que votaron. Un electo puede esperar escapar de las consecuencias de sus votos; un ciudadano-legislador, nunca. La rotación anual impide la constitución de redes de influencia.",
+    obj4_q:"«No se puede obligar a alguien a aceptar esta carga»",obj4_a:"El sistema se basa en el voluntariado, como con los jurados. La experiencia muestra que la mayoría de los ciudadanos solicitados aceptan cuando se les explica la importancia de su misión.",
+    corr_eyebrow:"Las garantías",corr_h2:"Tolerancia cero a la corrupción",
+    corr1_h3:"Prohibición absoluta",corr1_p:"Cualquier forma de presión, corrupción o intento de influencia ilegítima sobre los senadores ciudadanos está estrictamente prohibida.",
+    corr2_h3:"Prisión mínima obligatoria",corr2_p:"Cualquier persona condenada por corrupción de un senador ciudadano enfrenta una pena de prisión mínima de tres años, sin excepción.",
+    corr3_h3:"Transparencia total",corr3_p:"Todos los lobbies se expresan en sesión plenaria pública y contradictoria, ante la asamblea completa. Sin influencia privada, sin puerta trasera.",
+    cta_quote:"«La democracia significa el poder al pueblo.<br>Nuestro sistema actual confía ese poder a una élite política profesional.<br>El sorteo inteligente devuelve literalmente el poder a manos del pueblo.»",
+    cta_l1:"El cambio es posible.",cta_l2:"El cambio es necesario.",cta_l3:"El cambio comienza ahora.",
+    cta_btn1:"Unirse al movimiento",cta_btn2:"Compartir el manifiesto",
+    cta_foot:"Atenas lo practicó durante dos siglos. Podemos hacerlo hoy.",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; Movimiento por una democracia ciudadana &nbsp;·&nbsp; Francia"
+  },
+  de: {
+    hero_badge:"Manifest für eine intelligente Losverfahren-Demokratie",
+    hero_sub:"Ein per Los gewählter Bürgersenat zur Erneuerung der französischen Demokratie",
+    hero_btn:"Manifest lesen ↓",
+    urgency_eyebrow:"Die Dringlichkeit",
+    urgency_h2:"Unsere Demokratie ist in der Krise.",
+    urgency_p1:"Unsere Zeit steht vor beispiellosen Herausforderungen: Klimawandel, Umbrüche durch künstliche Intelligenz, wachsende Ungleichheit. Diese Krisen erfordern eine starke und legitime politische Macht, die in der Lage ist, mutige Entscheidungen für das Gemeinwohl zu treffen.",
+    urgency_p2:"Unsere aktuelle repräsentative Demokratie ist gelähmt. Untergraben durch das Misstrauen der Bürger, massive Wahlenthaltung und die wachsende Kluft zwischen Regierenden und Regierten, kann sie den Herausforderungen unserer Zeit nicht mehr begegnen.",
+    urgency_quote:"Es ist Zeit, unsere Demokratie auf neuen Grundlagen aufzubauen.",
+    stat_l1:"Bürger jährlich<br>per Los gezogen",stat_l2:"Bürger-<br>senatoren",stat_n3:"1 Jahr",stat_l3:"Mandatsdauer,<br>nicht erneuerbar",stat_l4:"politische Karriere<br>zu verteidigen",
+    mech_eyebrow:"Der Mechanismus",mech_h2:"Wie es funktioniert",mech_lead:"Ein dreistufiger Prozess, einfach, reproduzierbar, auf kollektiver Weisheit basierend.",
+    step1_h3:"Die anfängliche Auslosung",step1_p:"Jedes Jahr werden 4.200 französische Bürger per Los nach denselben Kriterien wie Geschworene ausgewählt — Erwachsene, in den Wählerregistern eingetragen. Authentische soziologische Repräsentativität: alle Altersgruppen, alle Berufe, alle Herkunftsländer, alle Regionen.",
+    step2_h3:"Die Peerauswahl",step2_p:"Diese 4.200 Bürger treffen sich in Gruppen von 10 zu einem Tag der Beratung. Anschließend bewertet jeder Teilnehmer die anderen neun mit einer einzigen Frage: <em>«Wer ist die kompetenteste Person, um ein Gesetz zu machen?»</em> Die Person mit der höchsten Punktzahl wird ausgewählt.",
+    step3_h3:"Der Bürgersenat",step3_p:"Die so bestimmten 420 Bürger bilden für ein Jahr den neuen Senat, nicht erneuerbar. Sie profitieren von der Unterstützung der Verwaltungsdienste des Senats und studieren Gesetzesvorschläge mit Hilfe unabhängiger Experten.",
+    arch_eyebrow:"Die institutionelle Architektur",arch_h2:"Was sich ändert. Was bleibt.",
+    arch1_tag:"Beibehalten",arch1_h3:"Die Exekutive",arch1_p:"Präsident und Regierung durch allgemeines Wahlrecht gewählt. Sie setzen die verabschiedeten Gesetze um.",
+    arch2_tag:"Beibehalten",arch2_h3:"Die Nationalversammlung",arch2_p:"Durch allgemeines Wahlrecht gewählt. Sie schlägt Gesetze vor, berät und verabschiedet sie in erster Lesung.",
+    arch3_tag:"Neu",arch3_h3:"Der Bürgersenat",arch3_p:"420 per Los gezogene Bürger prüfen und stimmen endgültig über Gesetze ab.",arch3_pill:"Letztes Wort",
+    arch_caption:"Diese Umkehrung der Gesetzgebungsgewalt ist grundlegend: Sie legt die endgültige demokratische Kontrolle in die Hände gewöhnlicher Bürger, frei von jeglichem politischen Karrierestreben.",
+    adv_eyebrow:"Die Vorteile",adv_h2:"Warum dieses System alles verändert",
+    adv1_h3:"Zurückgewonnene Legitimität",adv1_p:"Gewöhnliche Menschen aus allen Lebensbereichen, keine abgehobene politische Kaste. Eine beispiellose soziologische Legitimität.",
+    adv2_h3:"Das Gemeinwohl als einziger Horizont",adv2_p:"Keine Wiederwahl vorzubereiten, keine Partei zu befriedigen. Ihre einzige Motivation: die bestmöglichen Entscheidungen für das Land.",
+    adv3_h3:"Authentische Repräsentativität",adv3_p:"Jung und alt, Arbeiter und Führungskräfte, Land und Stadt. Der Bürgersenat ähnelt endlich dem Volk, das er repräsentiert.",
+    adv4_h3:"Das Ende des Parteiblockades",adv4_p:"Kein Links mehr gegen Rechts — eine kollektive Beratung, die sich auf den Kern der Probleme konzentriert.",
+    adv5_h3:"Akzeptanz der Entscheidungen",adv5_p:"Von gewöhnlichen Bürgern verabschiedete Gesetze, besser verstanden, besser akzeptiert, besser angewandt.",
+    adv6_h3:"Einfach und kostengünstig",adv6_p:"Schneller und günstiger als nationale Wahlkampagnen. Das Losverfahren eliminiert den Einfluss von Geld.",
+    obj_eyebrow:"Debatte",obj_h2:"Antworten auf Einwände",
+    obj1_q:"«Gewöhnliche Bürger haben nicht die nötige Kompetenz»",obj1_a:"Die Peerauswahl identifiziert die am besten geeigneten Personen für die Beratung. Bürgersenatoren profitieren von der Unterstützung unabhängiger Experten und der Senatsadministration — genau wie aktuelle Gewählte. Die Geschichte zeigt, dass gewöhnliche Bürger, wenn man ihnen vertraut, zu hochwertigen Beratungen fähig sind.",
+    obj2_q:"«Sie werden von Experten manipuliert werden»",obj2_a:"420 Bürger aus allen Milieus mit vielfältigen Lebenserfahrungen: Diese Vielfalt ist der beste Schutz gegen Manipulation. Alle Anhörungen sind öffentlich und kontradiktorisch.",
+    obj3_q:"«Sie werden den Wählern gegenüber nicht verantwortlich sein»",obj3_a:"Im Gegenteil: Sie werden direkt unter den Gesetzen leben, die sie verabschiedet haben. Ein Gewählter kann hoffen, den Folgen seiner Abstimmungen zu entkommen; ein Bürger-Gesetzgeber niemals. Die jährliche Rotation verhindert die Bildung von Einflussnetzen.",
+    obj4_q:"«Man kann niemanden zwingen, dieses Amt anzunehmen»",obj4_a:"Das System basiert auf Freiwilligkeit, wie bei Geschworenen. Die Erfahrung zeigt, dass die Mehrheit der angesprochenen Bürger akzeptiert, wenn ihnen die Bedeutung ihrer Mission erklärt wird.",
+    corr_eyebrow:"Die Garantien",corr_h2:"Null Toleranz für Korruption",
+    corr1_h3:"Absolutes Verbot",corr1_p:"Jede Form von Druck, Korruption oder illegitimem Einfluss auf Bürgersenatoren ist streng verboten.",
+    corr2_h3:"Mindestfreiheitsstrafe",corr2_p:"Jede Person, die wegen Korruption eines Bürgersenators verurteilt wird, sieht sich einer Mindestfreiheitsstrafe von drei Jahren gegenüber, ohne Ausnahme.",
+    corr3_h3:"Totale Transparenz",corr3_p:"Alle Lobbyisten kommen in öffentlicher, kontradiktorischer Plenarsitzung vor der vollständigen Versammlung zu Wort. Kein privater Einfluss, keine Hintertür.",
+    cta_quote:"«Demokratie bedeutet Macht für das Volk.<br>Unser aktuelles System überträgt diese Macht einer professionellen politischen Elite.<br>Das intelligente Losverfahren gibt die Macht buchstäblich in die Hände des Volkes zurück.»",
+    cta_l1:"Veränderung ist möglich.",cta_l2:"Veränderung ist notwendig.",cta_l3:"Veränderung beginnt jetzt.",
+    cta_btn1:"Der Bewegung beitreten",cta_btn2:"Das Manifest teilen",
+    cta_foot:"Athen praktizierte es zwei Jahrhunderte lang. Wir können es heute tun.",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; Bewegung für eine Bürgerdemokratie &nbsp;·&nbsp; Frankreich"
+  },
+  zh: {
+    hero_badge:"智能抽签民主宣言",
+    hero_sub:"通过抽签组建公民参议院，重塑法国民主",
+    hero_btn:"阅读宣言 ↓",
+    urgency_eyebrow:"紧迫性",
+    urgency_h2:"我们的民主正处于危机之中。",
+    urgency_p1:"我们的时代面临前所未有的挑战：气候变化、人工智能引发的颠覆、不平等加剧。这些危机要求强大而合法的政治权力，能够为公共利益做出勇敢的决策。",
+    urgency_p2:"我们当前的代议制民主已经瘫痪。在公民不信任、大规模弃权以及统治者与被统治者之间日益扩大的鸿沟的侵蚀下，它已无法应对我们时代的挑战。",
+    urgency_quote:"是时候在新的基础上重建我们的民主了。",
+    stat_l1:"每年通过抽签<br>产生的公民",stat_l2:"公民<br>参议员",stat_n3:"1年",stat_l3:"任期，<br>不可续任",stat_l4:"需要捍卫的<br>政治生涯",
+    mech_eyebrow:"机制",mech_h2:"运作方式",mech_lead:"三步流程，简单、可重复，建立在集体智慧之上。",
+    step1_h3:"初始抽签",step1_p:"每年，按照与陪审员相同的标准，通过抽签选出4,200名法国公民——成年人，已登记选民。真实的社会学代表性：所有年龄段、所有职业、所有来源、所有地区。",
+    step2_h3:"同伴选拔",step2_p:"这4,200名公民以10人为一组进行一天的讨论。最后，每位参与者就一个问题评估其他九人：<em>「谁是最有能力制定法律的人？」</em> 获得最高评分的人被选中。",
+    step3_h3:"公民参议院",step3_p:"这样产生的420名公民组成新参议院，任期一年，不可续任。他们得到参议院行政机构的支持，并在独立专家的帮助下研究法律提案。",
+    arch_eyebrow:"制度架构",arch_h2:"改变什么。保留什么。",
+    arch1_tag:"保留",arch1_h3:"行政机构",arch1_p:"由全民选举产生的总统和政府。他们执行和落实通过的法律。",
+    arch2_tag:"保留",arch2_h3:"国民议会",arch2_p:"由全民选举产生。在一读中提出、审议和通过立法文本。",
+    arch3_tag:"新设",arch3_h3:"公民参议院",arch3_p:"420名抽签产生的公民审查并最终表决法律。",arch3_pill:"最终决定权",
+    arch_caption:"立法权力的这种逆转是根本性的：它将最终的民主控制权置于普通公民手中，他们不受任何政治职业抱负的束缚。",
+    adv_eyebrow:"优势",adv_h2:"为何这一制度改变一切",
+    adv1_h3:"重获合法性",adv1_p:"来自各行各业的普通人，而非脱离现实的政治精英。前所未有的社会学合法性。",
+    adv2_h3:"以公共利益为唯一目标",adv2_p:"无需准备连任，无需取悦政党。他们唯一的动力：为国家做出最好的决策。",
+    adv3_h3:"真实的代表性",adv3_p:"年轻人和老年人、工人和高管、农村和城市居民。公民参议院终于与它所代表的人民相似。",
+    adv4_h3:"终结党派僵局",adv4_p:"不再是左派对右派——而是专注于问题实质的集体讨论。",
+    adv5_h3:"决策的可接受性",adv5_p:"由普通公民表决的法律，更易理解、更易接受、更易执行。",
+    adv6_h3:"简单且经济",adv6_p:"比全国选举活动更快、成本更低。抽签制度消除了金钱的影响。",
+    obj_eyebrow:"辩论",obj_h2:"对质疑的回答",
+    obj1_q:"「普通公民缺乏专业能力」",obj1_a:"同伴选拔能识别出最适合参与讨论的人。公民参议员获得独立专家和参议院行政机构的支持——与现任民选官员完全相同。历史表明，当普通公民被信任时，他们能够进行高质量的审议。",
+    obj2_q:"「他们会被专家操纵」",obj2_a:"来自各个阶层、具有不同生活经历的420名公民：这种多样性是对抗操纵的最佳保护。所有听证会均公开进行，允许反驳。",
+    obj3_q:"「他们不会对选民负责」",obj3_a:"恰恰相反：他们将直接生活在自己投票通过的法律之下。民选官员可能希望逃脱其投票的后果；公民立法者却永远无法逃脱。年度轮换防止了影响力网络的形成。",
+    obj4_q:"「不能强迫别人接受这一职责」",obj4_a:"该制度基于自愿原则，就像陪审团制度一样。经验表明，当向公民解释其使命的重要性时，大多数被征召的公民都会接受。",
+    corr_eyebrow:"保障措施",corr_h2:"对腐败零容忍",
+    corr1_h3:"绝对禁止",corr1_p:"对公民参议员施加任何形式的压力、腐败或非法影响企图均被严格禁止。",
+    corr2_h3:"最低强制监禁",corr2_p:"任何被判定腐败公民参议员的人将面临至少三年的强制监禁，无一例外。",
+    corr3_h3:"完全透明",corr3_p:"所有游说团体在完整的公开全体会议上发言，面向全体议会。没有私下影响，没有后门。",
+    cta_quote:"「民主意味着权力属于人民。<br>我们当前的制度将这种权力托付给职业政治精英。<br>智能抽签制度从字面意义上将权力重新置于人民手中。」",
+    cta_l1:"改变是可能的。",cta_l2:"改变是必要的。",cta_l3:"改变从现在开始。",
+    cta_btn1:"加入运动",cta_btn2:"分享宣言",
+    cta_foot:"雅典实践了两个世纪。我们今天可以做到。",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; 公民民主运动 &nbsp;·&nbsp; 法国"
+  },
+  ru: {
+    hero_badge:"Манифест за демократию разумного жребия",
+    hero_sub:"Гражданский сенат, избранный по жребию, для обновления французской демократии",
+    hero_btn:"Читать манифест ↓",
+    urgency_eyebrow:"Срочность",
+    urgency_h2:"Наша демократия в кризисе.",
+    urgency_p1:"Наша эпоха сталкивается с беспрецедентными вызовами: изменение климата, потрясения, вызванные искусственным интеллектом, нарастание неравенства. Эти кризисы требуют сильной и легитимной политической власти, способной принимать смелые решения ради общего блага.",
+    urgency_p2:"Наша нынешняя представительная демократия парализована. Подорванная недоверием граждан, массовым абсентеизмом и растущей пропастью между правителями и управляемыми, она больше не может отвечать на вызовы нашего времени.",
+    urgency_quote:"Пришло время обновить нашу демократию на новых основаниях.",
+    stat_l1:"граждан, отобранных<br>по жребию ежегодно",stat_l2:"граждан-<br>сенаторов",stat_n3:"1 год",stat_l3:"срок мандата,<br>невозобновляемый",stat_l4:"политическая карьера<br>для защиты",
+    mech_eyebrow:"Механизм",mech_h2:"Как это работает",mech_lead:"Трёхэтапный процесс, простой, воспроизводимый, основанный на коллективной мудрости.",
+    step1_h3:"Первоначальная жеребьёвка",step1_p:"Каждый год 4 200 французских граждан отбираются по жребию по тем же критериям, что и присяжные — совершеннолетние, включённые в избирательные списки. Подлинная социологическая представительность: все возраста, все профессии, все происхождения, все территории.",
+    step2_h3:"Отбор коллегами",step2_p:"Эти 4 200 граждан собираются группами по 10 человек на один день обсуждения. По его итогам каждый участник оценивает остальных девятерых по единственному вопросу: <em>«Кто из них наиболее компетентен для создания закона?»</em> Тот, кто получил наивысшую оценку, отбирается.",
+    step3_h3:"Гражданский сенат",step3_p:"420 граждан, отобранных таким образом, формируют новый Сенат сроком на один год, невозобновляемый. Они пользуются поддержкой административных служб Сената и изучают законодательные предложения с помощью независимых экспертов.",
+    arch_eyebrow:"Институциональная архитектура",arch_h2:"Что меняется. Что остаётся.",
+    arch1_tag:"Сохраняется",arch1_h3:"Исполнительная власть",arch1_p:"Президент и правительство, избранные всеобщим голосованием. Они применяют и исполняют принятые законы.",
+    arch2_tag:"Сохраняется",arch2_h3:"Национальная ассамблея",arch2_p:"Избранная всеобщим голосованием. Она предлагает, обсуждает и принимает законодательные тексты в первом чтении.",
+    arch3_tag:"Новое",arch3_h3:"Гражданский сенат",arch3_p:"420 граждан, избранных по жребию, рассматривают и окончательно голосуют за законы.",arch3_pill:"Последнее слово",
+    arch_caption:"Это обращение законодательной власти носит фундаментальный характер: оно передаёт окончательный демократический контроль в руки рядовых граждан, свободных от каких-либо политических карьерных амбиций.",
+    adv_eyebrow:"Преимущества",adv_h2:"Почему эта система меняет всё",
+    adv1_h3:"Восстановленная легитимность",adv1_p:"Обычные люди из всех слоёв общества, а не оторванная от реальности политическая каста. Беспрецедентная социологическая легитимность.",
+    adv2_h3:"Общее благо как единственный горизонт",adv2_p:"Никакого переизбрания, к которому нужно готовиться, никакой партии, которую нужно ублажать. Их единственная мотивация: наилучшие решения для страны.",
+    adv3_h3:"Подлинная представительность",adv3_p:"Молодые и пожилые, рабочие и руководители, сельские и городские жители. Гражданский сенат наконец-то похож на народ, который он представляет.",
+    adv4_h3:"Конец партийных тупиков",adv4_p:"Никакого противостояния левых и правых — коллективное обсуждение, сосредоточенное на сути проблем.",
+    adv5_h3:"Приемлемость решений",adv5_p:"Законы, принятые рядовыми гражданами, лучше понимаются, лучше принимаются, лучше применяются.",
+    adv6_h3:"Просто и экономично",adv6_p:"Быстрее и дешевле, чем национальные избирательные кампании. Жеребьёвка устраняет влияние денег.",
+    obj_eyebrow:"Дискуссия",obj_h2:"Ответы на возражения",
+    obj1_q:"«У рядовых граждан нет необходимой компетентности»",obj1_a:"Отбор коллегами выявляет людей, наиболее способных к обсуждению. Граждане-сенаторы пользуются поддержкой независимых экспертов и администрации Сената — точно так же, как нынешние выборные лица. История показывает, что рядовые граждане, когда им доверяют, способны к обсуждениям высокого качества.",
+    obj2_q:"«Они будут манипулированы экспертами»",obj2_a:"420 граждан из всех слоёв общества с разнообразным жизненным опытом: это разнообразие является наилучшей защитой от манипуляций. Все слушания публичны и состязательны.",
+    obj3_q:"«Они не будут нести ответственность перед избирателями»",obj3_a:"Напротив: они будут жить непосредственно под законами, которые проголосовали. Выборное лицо может надеяться избежать последствий своих голосований; гражданин-законодатель — никогда. Ежегодная ротация предотвращает формирование сетей влияния.",
+    obj4_q:"«Нельзя заставить кого-то принять эту ответственность»",obj4_a:"Система основана на добровольности, как в случае с присяжными. Опыт показывает, что большинство привлечённых граждан соглашаются, когда им объясняют важность их миссии.",
+    corr_eyebrow:"Гарантии",corr_h2:"Нулевая терпимость к коррупции",
+    corr1_h3:"Абсолютный запрет",corr1_p:"Любая форма давления, коррупции или попытки незаконного влияния на граждан-сенаторов строго запрещена.",
+    corr2_h3:"Минимальное обязательное заключение",corr2_p:"Любой, кто будет осуждён за подкуп гражданина-сенатора, столкнётся с минимальным обязательным сроком заключения три года, без исключений.",
+    corr3_h3:"Полная прозрачность",corr3_p:"Все лоббисты выступают на публичном пленарном заседании, перед полным собранием. Никакого частного влияния, никаких задних дверей.",
+    cta_quote:"«Демократия означает власть народа.<br>Наша нынешняя система передаёт эту власть профессиональной политической элите.<br>Разумная жеребьёвка буквально возвращает власть в руки народа.»",
+    cta_l1:"Перемены возможны.",cta_l2:"Перемены необходимы.",cta_l3:"Перемены начинаются сейчас.",
+    cta_btn1:"Присоединиться к движению",cta_btn2:"Поделиться манифестом",
+    cta_foot:"Афины практиковали это два века. Мы можем сделать это сегодня.",
+    footer_sub:"les4200.fr &nbsp;·&nbsp; Движение за гражданскую демократию &nbsp;·&nbsp; Франция"
+  }
+};
+
+function setLang(lang) {
+  if (!T[lang]) return;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var k = el.dataset.i18n;
+    if (T[lang][k] !== undefined) el.innerHTML = T[lang][k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(b) {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  try { localStorage.setItem('l4200_lang', lang); } catch(e) {}
+}
+
+document.querySelectorAll('.lang-btn').forEach(function(b) {
+  b.addEventListener('click', function() { setLang(b.dataset.lang); });
+});
+
+(function() {
+  var saved = 'fr';
+  try { saved = localStorage.getItem('l4200_lang') || 'fr'; } catch(e) {}
+  if (saved !== 'fr') setLang(saved);
+})();
+
+var g = document.getElementById('preamble-grid');
+function checkGrid() { if (g) g.style.gridTemplateColumns = window.innerWidth < 680 ? '1fr' : '1fr 1fr'; }
+checkGrid(); window.addEventListener('resize', checkGrid);
+
+var io = new IntersectionObserver(function(entries) {
+  var d = 0;
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      (function(el, delay) { setTimeout(function() { el.classList.add('in'); }, delay); })(e.target, d);
+      d += 55; io.unobserve(e.target);
+    }
+  });
+}, {threshold: .1});
+document.querySelectorAll('.reveal').forEach(function(el) { io.observe(el); });
+
+var co = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (!e.isIntersecting) return;
+    var el = e.target, t = parseInt(el.dataset.target, 10);
+    if (isNaN(t)) return;
+    var steps = 60, i = 0, inc = t / steps;
+    var timer = setInterval(function() {
+      i++; el.textContent = Math.round(Math.min(i * inc, t)).toLocaleString('fr-FR');
+      if (i >= steps) clearInterval(timer);
+    }, 1200 / steps);
+    co.unobserve(el);
+  });
+}, {threshold: .5});
+document.querySelectorAll('[data-target]').forEach(function(el) { co.observe(el); });
+
+document.querySelectorAll('.acc-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    var item = btn.closest('.acc-item'), open = item.classList.contains('open');
+    document.querySelectorAll('.acc-item.open').forEach(function(i) {
+      i.classList.remove('open'); i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+    });
+    if (!open) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+  });
+});
+</script>
+
+</body>
+</html>
